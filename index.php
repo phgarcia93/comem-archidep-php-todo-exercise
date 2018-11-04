@@ -1,10 +1,10 @@
 <?php
 
-define('BASE_URL', '/comem-archidep-php-todo-exercise/');
+define('BASE_URL','index.php');
 define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'todolist');
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 define('DB_PORT', '3306');
 
 $db = new PDO('mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME, DB_USER, DB_PASS);
@@ -36,7 +36,7 @@ switch($_POST['action']) {
 
     $id = $_POST['id'];
     if(is_numeric($id)) {
-      $updateQuery = 'SELECT'; // IMPLEMENT ME
+      $updateQuery = ''; // IMPLEMENT ME
       if(!$db->query($updateQuery)) {
         die(print_r($db->errorInfo(), true));
       }
@@ -52,12 +52,12 @@ switch($_POST['action']) {
 
     $id = $_POST['id'];
     if(is_numeric($id)) {
-      $deleteQuery = 'DELETE \''.$id.'\' FROM todo';
+      $deleteQuery = 'DELETE FROM todo WHERE id = \''.$id.'\'';
       if(!$db->query($deleteQuery)) {
         die(print_r($db->errorInfo(), true));
       }
     }
-
+        
     header('Location: '.BASE_URL);
     die();
 
