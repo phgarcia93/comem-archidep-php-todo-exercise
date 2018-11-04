@@ -1,8 +1,8 @@
 <?php
 
 define('BASE_URL', '/');
-define('DB_USER', 'todolist');
-define('DB_PASS', 'chAngeMeN0w!');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'todolist');
 define('DB_HOST', '127.0.0.1');
 define('DB_PORT', '3306');
@@ -19,7 +19,7 @@ switch($_POST['action']) {
 
     $title = $_POST['title'];
     if ($title && $title !== '') {
-      $insertQuery = 'INSERT INTO todo VALUES(NULL, \''.$title.'\', FALSE, CURRENT_TIMESTAMP)';
+      //$insertQuery = 'INSERT INTO todo VALUES(NULL, \''.$title.'\', FALSE, CURRENT_TIMESTAMP)';
       if (!$db->query($insertQuery)) {
         die(print_r($db->errorInfo(), true));
       }
@@ -52,12 +52,12 @@ switch($_POST['action']) {
 
     $id = $_POST['id'];
     if(is_numeric($id)) {
-      $deleteQuery = ''; // IMPLEMENT ME
+      //$deleteQuery = 'DELETE' .self::$table.'(id)'; // IMPLEMENT ME
       if(!$db->query($deleteQuery)) {
         die(print_r($db->errorInfo(), true));
       }
     }
-
+        
     header('Location: '.BASE_URL);
     die();
 
@@ -68,7 +68,7 @@ switch($_POST['action']) {
 /**
  * Select all tasks from the database.
  */
-$selectQuery = ''; // IMPLEMENT ME
+$selectQuery = 'SELECT * FROM todolist ORDER BY created_at DESC';
 $items = $db->query($selectQuery);
 ?>
 
@@ -129,7 +129,7 @@ $items = $db->query($selectQuery);
             <form action='<?= BASE_URL ?>' method='post'>
               <input type='hidden' name='id' value='<?= $item['id'] ?>' />
 
-              <div class='btn-group btn-group-sm'</div>
+              <div class='btn-group btn-group-sm'>
 
                 <!-- Todo item toggle button -->
                 <button type='submit' name='action' value='toggle' class='btn btn-primary'>
