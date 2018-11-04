@@ -1,10 +1,10 @@
 <?php
 
-define('BASE_URL', 'index.php');
+define('BASE_URL', '/comem-archidep-php-todo-exercise/');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'root');
 define('DB_NAME', 'todolist');
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
 
 $db = new PDO('mysql:host='.DB_HOST.';port='.DB_PORT.';dbname='.DB_NAME, DB_USER, DB_PASS);
@@ -57,7 +57,7 @@ switch($_POST['action']) {
         die(print_r($db->errorInfo(), true));
       }
     }
-        
+
     header('Location: '.BASE_URL);
     die();
 
