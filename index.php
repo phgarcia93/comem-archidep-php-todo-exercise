@@ -36,7 +36,9 @@ switch($_POST['action']) {
 
     $id = $_POST['id'];
     if(is_numeric($id)) {
-      $updateQuery = ''; // IMPLEMENT ME
+        $updateQuery = 'UPDATE todo SET done = !done WHERE id = \''.$id.'\'';
+        
+        
       if(!$db->query($updateQuery)) {
         die(print_r($db->errorInfo(), true));
       }
