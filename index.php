@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', '/');
+define('BASE_URL', 'index.php');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'todolist');
@@ -19,7 +19,7 @@ switch($_POST['action']) {
 
     $title = $_POST['title'];
     if ($title && $title !== '') {
-      $insertQuery = 'INSERT INTO todo VALUES(AUTO_INCREMENT,   \''.$title.'\', FALSE, CURRENT_TIMESTAMP)';
+      $insertQuery = 'INSERT INTO todo (title, done, created_at) VALUES (\''.$title.'\',FALSE, CURRENT_TIMESTAMP)';
       if (!$db->query($insertQuery)) {
         die(print_r($db->errorInfo(), true));
       }
